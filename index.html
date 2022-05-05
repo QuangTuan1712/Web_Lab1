@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="images/areas1.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>Lab 1 Web Programming</title>
+    <style>
+        #container {
+            text-align: center;
+        }
+        #header {
+            width: 100%;
+            height: 150px;
+            background-color: #B8FF80;
+            padding: 1px;
+        }
+        .title {
+            width: 20%;
+            margin-top: 33px;
+            float: left;
+            vertical-align: middle;
+        }
+        .author {
+            width: 30%;
+            float: right;
+            text-align: right;
+            vertical-align: middle;
+            margin-right: 5%;
+        }
+        [title="author name"] {
+            font-family: serif;
+            font-size: 30px;
+        }
+        [title="variant"] {
+            font-family: serif;
+            font-size: 25px;
+        }
+        #content {
+            background-color: #FFFFB8;
+            font-size: 20px;
+            height: 450px;
+            width: 50%;
+            float: right;
+        }
+        #graph {
+            background-color:#B4FEFFFF;
+            font-size: 20px;
+            height: 450px;
+            width: 50%;
+            float: left;
+        }
+        #footer {
+            text-align: center;
+            clear: both;
+            padding: 5px;
+        }
+        #errors {
+            color: red;
+            font-size: 20px;
+            font-family: "Cambria", serif;
+        }
+        #x-values {
+            width: 180px;
+            font-size: 19px;
+            font-family: "Cambria", serif;
+            vertical-align: middle;
+            text-align-last: center;
+            text-align: center;
+        }
+        #y-values {
+            width: 180px;
+            font-size: 19px;
+            font-family: "Cambria", serif;
+            vertical-align: middle;
+            text-align-last: center;
+        }
+        .y-value {
+            text-align: center;
+        }
+        .r-value {
+            font-size: 19px;
+            font-family: "Cambria", serif;
+        }
+        div.buttons {
+            text-align: center;
+            margin-bottom: 3px;
+            padding-top: 1px;
+            border-top: 1px;
+        }
+        div.buttons input{
+            font-size: 19px;
+            font-family: "Cambria", serif;
+            font-weight: bold;
+        }
+        div.buttons input:hover {
+            color:  darkred;
+        }
+        #result-table {
+            width: 100%;
+            border: 1px solid black;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        #result-table th {
+            background: #EFEFEF;
+            font-weight: bold;
+            padding: 5px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <div class="title"><h1>Web Lab 1</h1></div>
+        <div class="author">
+            <p title="author name">Фам Куанг Туан</p>
+            <p title="variant">Вариант: 12021</p>
+        </div>
+    </div>
+    <div id="graph">
+        <h2><b>Graph&nbsp;</b></h2>
+        <img src="images/areas.png" alt="&ensp;No such image exist&ensp;(╯°□°）╯︵ ┻━┻" width="420"/>
+    </div>
+    <div id="content">
+        <h2><b>&emsp;Values</b></h2>
+        <form id="input-form" action="" method="POST">
+            <div class="x-text">
+                <label for="x-values">X:&emsp;</label><input type="text" id="x-values" name="x" size="20" placeholder="From -3 to 3" autocomplete="off"/>
+            </div>
+            <br>
+            <div class="y-select">
+                <label for="y-values">Y:&emsp;</label><select id="y-values">
+                    <option class="y-value" value="10" hidden></option>
+                    <option class="y-value" value="-5">-5</option>
+                    <option class="y-value" value="-4">-4</option>
+                    <option class="y-value" value="-3">-3</option>
+                    <option class="y-value" value="-2">-2</option>
+                    <option class="y-value" value="-1">-1</option>
+                    <option class="y-value" value="0">0</option>
+                    <option class="y-value" value="1">1</option>
+                    <option class="y-value" value="2">2</option>
+                    <option class="y-value" value="3">3</option>
+                </select>
+            </div>
+            <br>
+            <div class="r-checkbox">R:&emsp;
+                <label class="r-value">
+                    <input type="checkbox" name="r" value="1"> 1&emsp;
+                </label>
+                <label>
+                    <input type="checkbox" name="r" value="2"> 2&emsp;
+                </label>
+                <label class="r-value">
+                    <input type="checkbox" name="r" value="3"> 3&emsp;
+                </label>
+                <label class="r-value">
+                    <input type="checkbox" name="r" value="4"> 4&emsp;
+                </label>
+                <label class="r-value">
+                    <input type="checkbox" name="r" value="5"> 5
+                </label>
+            </div>
+            <br>
+            <div class="buttons">
+                &emsp;&emsp;
+                <input id="submit" type="submit" value="Submit">
+                &ensp;
+                <input id="reset" type="reset" value="Reset">
+            </div>
+            <div id="errors"></div>
+        </form>
+    </div>
+
+    <div id="footer">
+        <table id="result-table" class="result-table">
+            <tr class="table-header">
+                <th class="coord_col">X</th>
+                <th class="coord_col">Y</th>
+                <th class="coord_col">R</th>
+                <th class="time-col">Current Time</th>
+                <th class="time-col">Time script</th>
+                <th class="res-col">Result</th>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    console.log("Starting")
+</script>
+<script src="index.js"></script>
+</body>
+</html>
